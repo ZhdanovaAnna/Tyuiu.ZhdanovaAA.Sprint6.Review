@@ -19,7 +19,7 @@ namespace Tyuiu.ZhdanovaAA.Sprint6.TaskReview.V19.Test
             int m = 4;
             int c = 1;
             int k = 2;
-            int l = 2;
+            int l = 3;
             int[,] array = new int[3, 4] { { -5, 4, 1, 5},
                                             {2, 0, -1, 3 },
                                             {-1, -3, 5, 2 }};

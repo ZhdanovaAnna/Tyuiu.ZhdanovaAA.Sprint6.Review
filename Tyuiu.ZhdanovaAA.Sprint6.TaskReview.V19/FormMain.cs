@@ -21,9 +21,10 @@ namespace Tyuiu.ZhdanovaAA.Sprint6.TaskReview.V19
 
         private void buttonDone_ZAA_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(textBoxColumns_ZAA.Text, out int rows) && int.TryParse(textBoxColumns_ZAA.Text, out int columns))
+            if (int.TryParse(textBoxRows_ZAA.Text, out int rows) && int.TryParse(textBoxColumns_ZAA.Text, out int columns))
             {
                 dataGridViewMatrix_ZAA.Columns.Clear();
+                dataGridViewMatrix_ZAA.Rows.Clear();
                 dataGridViewMatrix_ZAA.RowCount = rows;
                 dataGridViewMatrix_ZAA.ColumnCount = columns;
 
@@ -34,15 +35,14 @@ namespace Tyuiu.ZhdanovaAA.Sprint6.TaskReview.V19
                     for (int j = 0; j < columns; j++)
                     {
                         array[i, j] = random.Next(Convert.ToInt32(textBoxStart_ZAA.Text), Convert.ToInt32(textBoxStop_ZAA.Text) + 1);
-                        dataGridViewMatrix_ZAA.Rows[j].Cells[i].Value = array[i, j];
-                        if (i > 2)
+                        dataGridViewMatrix_ZAA.Rows[i].Cells[j].Value = array[i, j];
+                        if (j > 2)
                         {
-                            array[i, j] = array[i - 3, j] + (array[i - 3, j] - array[i - 2, j]);
-                            dataGridViewMatrix_ZAA.Rows[j].Cells[i].Value = array[i, j];
+                            array[i, j] = array[i, j-3] - array[i, j-2] - array[i, j-1];
+                            dataGridViewMatrix_ZAA.Rows[i].Cells[j].Value = array[i, j];
                         }
-                        dataGridViewMatrix_ZAA.Columns[i].Width = 45;
+                        dataGridViewMatrix_ZAA.Columns[j].Width = 45;
                         dataGridViewMatrix_ZAA.Rows[i].Height = 45;
-                        array[i, j] = Convert.ToInt32(dataGridViewMatrix_ZAA.Rows[i].Cells[j].Value);
                     }
                 }
                 DataService ds = new DataService();
